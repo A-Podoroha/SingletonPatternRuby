@@ -1,11 +1,10 @@
-class Singleton
-  @@inst = nil
+class SingletonClass
+  @inst = new
+
+  private_class_method :new
 
   def self.inst
-    if(@@inst == nil)
-      @@inst = Singleton.new
-    end
-    @@inst
+    @inst
   end
 
   def name=(name)
@@ -19,11 +18,14 @@ class Singleton
       puts "hello. my name is #{@name}"
     end
   end
+
 end
 
 
-obj1 = Singleton.inst
-obj2 = Singleton.inst
+obj1 = SingletonClass.inst
+puts obj1.object_id
+obj2 = SingletonClass.inst
+puts obj2.object_id
 
 obj1.greet
 obj2.greet
